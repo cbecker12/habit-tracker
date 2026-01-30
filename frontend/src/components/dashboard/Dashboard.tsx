@@ -1,23 +1,29 @@
-import type { Habit } from "../../types/habit" 
+import type { Habit } from "../../types/habit";
+import AddHabitForm from "./AddHabitForm";
 
-interface DashboardProps { 
-    habits: Habit[] 
+interface DashboardProps {
+  habits: Habit[];
+  onAddHabit: (name: string) => void 
+  onDeleteHabit: (id: number) => void 
 }
 
-const Dashboard = ({ habits }: DashboardProps) => { 
+const Dashboard = ({ habits, onAddHabit, onDeleteHabit }: DashboardProps) => {
+  return (
+    <section>
+      <AddHabitForm onAddHabit={onAddHabit} />
 
-    return ( 
-        <section>
-            <h2>Your Habits</h2>
-            {habits.length===0 ? (<p>No habits yet.</p>) : (
-                <ul>
-                    {habits.map((habit) => (
-                        <li key={habit.id}>{habit.name}</li>
-                    ))}
-                </ul>
-            )}
-        </section>
-    )
-} 
+      <ul>
+        {habits.map((habit) => (
+          <li key={habit.id}>
+            {habit.name}
+            <button onClick={() => onDeleteHabit(habit.id)} style={{ marginLeft: "0.5rem" }}> 
+                ❌ 
+            </button>
+          </li>
+        ))}
+      </ul>
+    </section>
+  );
+};
 
-export default Dashboard 
+export default Dashboard;

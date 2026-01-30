@@ -97,3 +97,26 @@ def calculate_streak(completed_dates):
             break 
 
     return streak 
+
+# DELETE /<int:habit_id> 
+
+@habits_bp.route("/<int:habit_id>", methods=["DELETE"]) 
+def delete_habit(habit_id): 
+    conn = get_connection() 
+    cursor = conn.cursor() 
+
+    # Delete all completions associated with this habit first 
+    cursor.execute( 
+        "DELETE FROM completions WHERE habit_id = ?", 
+        (habit_id,) 
+    ) 
+
+    cursor.execute( 
+        "DELETE FROM habits WHERE id = ?", 
+        (habit_id,) 
+    ) 
+
+    conn.commit() 
+    conn.close() 
+
+    return jsonify({"Deleted": habit_id}), 200 
