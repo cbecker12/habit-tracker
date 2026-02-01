@@ -19,7 +19,7 @@ export function useCompletions() {
         }
     }*/ 
 
-    const addCompletion = async (habit_id: string, date: number) => { 
+    const addCompletion = async (habit_id: number, date: string) => { 
         setLoading(true) 
         setError(null) 
         try { 
@@ -34,6 +34,6 @@ export function useCompletions() {
     return { 
         addCompletion, 
         loading, 
-        error 
+        error
     }
 } 

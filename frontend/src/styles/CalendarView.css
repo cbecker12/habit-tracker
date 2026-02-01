@@ -1,0 +1,28 @@
+.calendar-grid { 
+  max-width: 700px; 
+}
+
+.day {
+  border: 1px solid #ccc;
+  min-height: 80px;
+  padding: 4px;
+}
+
+.day-number {
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
+.habit-marker {
+  font-size: 0.7rem;
+  margin-top: 2px;
+}
+
+.empty {
+  border: none;
+}
+
+button { 
+  margin-right: 2px; 
+  margin-left: 2px; 
+}

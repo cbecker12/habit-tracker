@@ -1,13 +1,15 @@
-import type { Habit } from "../../types/habit";
-import AddHabitForm from "./AddHabitForm";
+import type { Habit } from "../../types/habit" 
+import AddHabitForm from "./AddHabitForm" 
+import AddCompletionForm from "./AddCompletionForm" 
 
 interface DashboardProps {
   habits: Habit[];
   onAddHabit: (name: string) => void 
   onDeleteHabit: (id: number) => void 
+  onAddCompletion: (habitId: number, date:string) => void 
 }
 
-const Dashboard = ({ habits, onAddHabit, onDeleteHabit }: DashboardProps) => {
+const Dashboard = ({ habits, onAddHabit, onDeleteHabit, onAddCompletion }: DashboardProps) => {
   return (
     <section>
       <AddHabitForm onAddHabit={onAddHabit} />
@@ -21,7 +23,9 @@ const Dashboard = ({ habits, onAddHabit, onDeleteHabit }: DashboardProps) => {
             </button>
           </li>
         ))}
-      </ul>
+      </ul> 
+      <br/>
+      <AddCompletionForm onAddCompletion={onAddCompletion} habits={habits} /> 
     </section>
   );
 };

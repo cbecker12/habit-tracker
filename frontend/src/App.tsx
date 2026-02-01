@@ -9,7 +9,7 @@ function App() {
   const [selectedMonth, setSelectedMonth] = useState(10) */ 
   
   return ( 
-    <div>
+    <div className="app-shell">
       <DashboardPage />
     </div>
   )
