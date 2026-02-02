@@ -21,7 +21,8 @@ const AddCompletionForm = ({ onAddCompletion, habits }: AddCompletionFormProps) 
 
     return ( 
         <form onSubmit={handleSubmit}>
-            <select value={habitId} onChange={(e) => setHabitId(Number(e.target.value))}> 
+            <select value={habitId} onChange={(e) => setHabitId(Number(e.target.value))} 
+            style={{padding: '2px', marginRight: '2px'}}> 
                 <option value="">Select habit</option>
                 {habits.map((h) => (
                     <option key={h.id} value={h.id}>{h.name}</option>

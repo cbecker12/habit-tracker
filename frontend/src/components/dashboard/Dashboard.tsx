@@ -10,15 +10,25 @@ interface DashboardProps {
 }
 
 const Dashboard = ({ habits, onAddHabit, onDeleteHabit, onAddCompletion }: DashboardProps) => {
+
+  const buttonStyle = { 
+    background: 'none', 
+    border: 'none', 
+    padding: 0, 
+    cursor: 'pointer', 
+    outline: 'inherit', 
+    marginLeft: "0.5rem" 
+  }
+
   return (
     <section>
       <AddHabitForm onAddHabit={onAddHabit} />
 
-      <ul>
+      <ul style={{display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "1.5rem"}}>
         {habits.map((habit) => (
           <li key={habit.id}>
             {habit.name}
-            <button onClick={() => onDeleteHabit(habit.id)} style={{ marginLeft: "0.5rem" }}> 
+            <button onClick={() => onDeleteHabit(habit.id)} style={buttonStyle}> 
                 ❌ 
             </button>
           </li>

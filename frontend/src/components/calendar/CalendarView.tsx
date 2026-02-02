@@ -60,7 +60,7 @@ const CalendarView = ({year, month, data, habits, onPrevMonth, onNextMonth}: Cal
                 <div className="habit-markers"> 
                     {dayHabits.map( habit => (
                         <div key={habit.id} className="habit-marker">
-                            {habit.name[0].toUpperCase()}{habit.name[1]}{habit.name[2]}{habit.name[3]}  
+                            {habit.name[0].toUpperCase()}{habit.name[1]}{habit.name[2]}{habit.name[3]}{habit.name[4]} 
                         </div>
                     ))}
                 </div>
@@ -81,7 +81,7 @@ const CalendarView = ({year, month, data, habits, onPrevMonth, onNextMonth}: Cal
                 gap: "0.5rem", marginTop: "1rem", 
             }}>
                 {weekdayLabels.map(d => (
-                    <div key={d} style={{ fontWeight: "bold", textAlign: "center" }}>
+                    <div key={d} className="weekdays" style={{ fontWeight: "bold", textAlign: "center" }}>
                         {d} 
                     </div> 
                 ))}
