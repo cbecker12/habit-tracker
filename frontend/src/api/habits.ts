@@ -7,7 +7,7 @@ export async function fetchHabits(): Promise<Habit[]> {
   if (!res.ok) {
     throw new Error("Failed to fetch habits") 
   }
-  return res.json();
+  return res.json() 
 }
 
 export async function createHabit(name: string): Promise<Habit> {

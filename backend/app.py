@@ -3,6 +3,7 @@ from flask_cors import CORS
 from backend.routes.habits import habits_bp 
 from backend.routes.completions import completions_bp 
 from backend.routes.dashboard import dashboard_bp 
+from backend.routes.streaks import streaks_bp 
 from backend.db import init_db 
 
 def create_app(test_config=None): 
@@ -22,6 +23,7 @@ def create_app(test_config=None):
     app.register_blueprint(habits_bp, url_prefix="/api/habits") 
     app.register_blueprint(completions_bp, url_prefix="/api/completions") 
     app.register_blueprint(dashboard_bp, url_prefix="/api/dashboard")
+    app.register_blueprint(streaks_bp, url_prefix="/api/streaks")
 
     return app 
 
