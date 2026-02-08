@@ -5,3 +5,5 @@ Run frontend from /frontend with 'npm run dev'
 
 Author: Chris Becker 
 chrisbecker1206@gmail.com 
+
+![Calendar view](frontend/src/assets/calendar-view.png)
