@@ -14,12 +14,23 @@ const DashboardPage = () => {
 
   const { data, loading: calendarLoading, error: calendarError, refresh } = useCalendar(year, month) 
   const { habits, loading, error, addHabit, removeHabit } = useHabits() 
-  const { addCompletion, loading: completionLoading, error: completionError } = useCompletions() 
+  const { addCompletion, removeCompletion, loading: completionLoading, error: completionError } = useCompletions() 
   const { streaks, loading: streaksLoading, error: streaksError, reloadStreaks} = useStreaks() 
 
-  const handleAddCompletion = async(habitId: number, date: string) => { 
+  const handleAddCompletion = async (habitId: number, date: string) => { 
     await addCompletion(habitId, date) 
     refresh() 
+    reloadStreaks() 
+  } 
+
+  const handleDeleteCompletion = async (habitId: number, date: string) => { 
+    await removeCompletion(habitId, date) 
+    refresh() 
+    reloadStreaks() 
+  }
+
+  const handleRemoveHabit = async (id: number) => { 
+    await removeHabit(id) 
     reloadStreaks() 
   }
 
@@ -52,8 +63,9 @@ const DashboardPage = () => {
       <main>
         <div className="layout-grid">
           <h1>Habit Tracker</h1>
-          <Dashboard habits={habits} onAddHabit={addHabit} onDeleteHabit={removeHabit} onAddCompletion={handleAddCompletion} /> 
-          <CalendarView year={year} month={month} data={data} habits={habits} onPrevMonth={goPrevMonth} onNextMonth={goNextMonth} /> 
+          <Dashboard habits={habits} onAddHabit={addHabit} onDeleteHabit={handleRemoveHabit} onAddCompletion={handleAddCompletion} /> 
+          <CalendarView year={year} month={month} data={data} habits={habits} onPrevMonth={goPrevMonth} onNextMonth={goNextMonth} 
+            onDeleteCompletion={handleDeleteCompletion} /> 
         </div> 
         <StreakSidebar streaks={streaks} /> 
       </main>

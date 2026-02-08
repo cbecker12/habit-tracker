@@ -22,11 +22,12 @@ interface CalendarViewProps {
     habits: Habit[] 
     onPrevMonth: () => void 
     onNextMonth: () => void 
+    onDeleteCompletion: (habit_id: number, date: string) => void 
 } 
 
 const weekdayLabels = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"] 
 
-const CalendarView = ({year, month, data, habits, onPrevMonth, onNextMonth}: CalendarViewProps) => { 
+const CalendarView = ({year, month, data, habits, onPrevMonth, onNextMonth, onDeleteCompletion}: CalendarViewProps) => { 
 
     const firstDayOfMonth = new Date(year, month, 1) 
     const lastDayOfMonth = new Date(year, month+1, 0) 
@@ -44,6 +45,13 @@ const CalendarView = ({year, month, data, habits, onPrevMonth, onNextMonth}: Cal
         return habits.filter((h) => habitIds.includes(h.id))
     } 
 
+    const nameFilter = (name: string): string => { 
+        if(name.length <= 5) { 
+            return name 
+        }
+        return name.substring(0, 5) + "..."
+    }
+
     const cells: React.ReactNode[] = [] 
 
     for (let i = 0; i < startWeekday; i++) { 
@@ -60,7 +68,7 @@ const CalendarView = ({year, month, data, habits, onPrevMonth, onNextMonth}: Cal
                 <div className="habit-markers"> 
                     {dayHabits.map( habit => (
                         <div key={habit.id} className="habit-marker">
-                            {habit.name[0].toUpperCase()}{habit.name[1]}{habit.name[2]}{habit.name[3]}{habit.name[4]} 
+                            {nameFilter(habit.name)} <button onClick={() => onDeleteCompletion(habit.id, dateStr)}>❌</button>
                         </div>
                     ))}
                 </div>

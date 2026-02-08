@@ -65,6 +65,25 @@ def add_completion():
         "date": date_str 
     }), 201 
 
+# DELETE / 
+
+@completions_bp.route("/", methods=["DELETE"]) 
+def delete_completion(): 
+    data = request.json
+    habit_id = data["habit_id"] 
+    date = data["date"]
+
+    conn = get_connection() 
+    cursor = conn.cursor() 
+    cursor.execute(
+        "DELETE FROM completions WHERE habit_id = ? AND date = ?", 
+        (habit_id, date,)
+    )
+    conn.commit() 
+    conn.close() 
+
+    return jsonify({"Deleted_id": habit_id, "Deleted_date": date}), 200 
+
 # GET /calendar
 
 @completions_bp.route("/calendar", methods=["GET"]) 

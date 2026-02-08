@@ -30,3 +30,17 @@ export async function createCompletion(habit_id: number, date: string): Promise<
 
     return res.json() 
 } 
+
+export async function deleteCompletion(habit_id: number, date: string): Promise<void> { 
+    const res = await fetch(`${API_BASE}/completions/`, { 
+        method: "DELETE", 
+        headers: { 
+            "Content-Type": "application/json", 
+        }, 
+        body: JSON.stringify({ habit_id, date})
+    }) 
+
+    if(!res.ok) { 
+        throw new Error("Failed to delete completion") 
+    }
+}

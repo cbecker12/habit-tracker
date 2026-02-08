@@ -1,5 +1,5 @@
 import { useState } from "react" 
-import { /*fetchCompletions,*/ createCompletion } from "../api/completions" 
+import { /*fetchCompletions,*/ createCompletion, deleteCompletion } from "../api/completions" 
 
 export function useCompletions() { 
     //const [completions, setCompletions] = useState<string | null>(null) 
@@ -29,10 +29,22 @@ export function useCompletions() {
         } finally { 
             setLoading(false) 
         }
+    } 
+
+    const removeCompletion = async (habit_id: number, date: string) => { 
+        try { 
+            setLoading(true) 
+            await deleteCompletion(habit_id, date) 
+        } catch (err) { 
+            setError((err as Error).message) 
+        } finally { 
+            setLoading(false) 
+        }
     }
 
     return { 
         addCompletion, 
+        removeCompletion, 
         loading, 
         error
     }
