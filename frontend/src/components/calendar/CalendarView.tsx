@@ -68,7 +68,8 @@ const CalendarView = ({year, month, data, habits, onPrevMonth, onNextMonth, onDe
                 <div className="habit-markers"> 
                     {dayHabits.map( habit => (
                         <div key={habit.id} className="habit-marker">
-                            {nameFilter(habit.name)} <button onClick={() => onDeleteCompletion(habit.id, dateStr)}>❌</button>
+                            {nameFilter(habit.name)} 
+                            <button id="delete-completion" onClick={() => onDeleteCompletion(habit.id, dateStr)}>❌</button>
                         </div>
                     ))}
                 </div>

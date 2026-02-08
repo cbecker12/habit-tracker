@@ -28,3 +28,10 @@ body {
   display: flex;
   justify-content: left;
 } 
+
+#delete-completion { 
+  border: none; 
+  background-color: inherit; 
+  padding: 0px 0px; 
+  font-size: xx-small;
+}
